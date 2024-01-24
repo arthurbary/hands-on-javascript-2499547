@@ -11,6 +11,10 @@ const mainContent = document.querySelector(".main-content");
 
 const Card = (data) => {
   const imgData = data[0];
+  const date = new Date(imgData.updated_at).toLocaleString("fr-UE", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"});
 
   const markup = `
     <figure class="image">
@@ -33,6 +37,10 @@ const Card = (data) => {
           <p>
             Photo by
             <span class="image__photog">${imgData.user.name}</span>.
+          </p>
+          <p>
+            Uploaded on: 
+            <time class="image_date" datetime="${imgData.updated_at}"> ${date}</time>
           </p>
           <p>
             <a href="${imgData.links.self}" class="image__link">
